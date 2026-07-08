@@ -1,0 +1,27 @@
+Roman to Integer
+Approach
+
+Roman numerals are generally written from largest to smallest. However, there are six special cases where a smaller numeral appears before a larger one to indicate subtraction, such as IV (4) and IX (9).
+
+Algorithm
+We use a HashMap (Map<Character, Integer>) to store the integer value corresponding to each Roman numeral.
+Traverse the string from left to right.
+For each character:
+Retrieve the value of the current numeral (curr).
+Retrieve the value of the next numeral (next), if it exists.
+If curr < next, the current value should be subtracted from the result.
+Otherwise, the current value is added to the result.
+int curr = map.get(s.charAt(i));
+int next = (i + 1 < s.length()) ? map.get(s.charAt(i + 1)) : 0;
+
+if (curr < next) {
+    res -= curr;
+} else {
+    res += curr;
+}
+
+By checking only the current and next symbols, we naturally handle all subtractive cases (IV, IX, XL, XC, CD, and CM) without requiring additional conditions.
+
+Complexity
+Time Complexity: O(n)
+Space Complexity: O(1)
