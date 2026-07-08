@@ -1,0 +1,62 @@
+# Merge Two Sorted Linked Lists (Java)
+
+## Overview
+
+This project implements a Java solution to the **Merge Two Sorted Lists** problem using a singly linked list.
+
+The algorithm merges two already sorted linked lists into a single sorted linked list by rearranging existing nodes instead of creating new ones.
+
+---
+
+## Problem Statement
+
+Given the heads of two sorted linked lists `list1` and `list2`, merge them into one sorted linked list.
+
+The merged list should be made by splicing together the nodes of the first two lists and returning the head of the merged list.
+
+---
+
+## Approach
+
+The solution uses the **Two Pointer Technique**.
+
+1. Create a dummy node to simplify handling the head of the merged list.
+2. Maintain a pointer (`current`) to the last node of the merged list.
+3. Compare the values of the current nodes in both lists.
+4. Attach the smaller node to the merged list.
+5. Move the corresponding list pointer forward.
+6. Continue until one list becomes empty.
+7. Attach the remaining nodes of the non-empty list.
+8. Return `dummy.next` as the head of the merged list.
+
+---
+
+## Time Complexity
+
+* **Time:** `O(m + n)`
+
+Each node from both linked lists is visited exactly once.
+
+---
+
+## Space Complexity
+
+* **Space:** `O(1)`
+
+No additional linked list is created. The algorithm only rearranges the existing node pointers.
+
+---
+
+## Key Concepts
+
+* Singly Linked Lists
+* Two Pointer Technique
+* Dummy Node
+* Pointer Manipulation
+* In-place Merging
+
+---
+
+## Learning Outcome
+
+This problem demonstrates how to efficiently merge two sorted linked lists without using extra memory. It reinforces linked list traversal, pointer updates, and the use of a dummy node to simplify edge-case handling.
