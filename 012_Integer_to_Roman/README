@@ -1,9 +1,28 @@
-Problem statement: 
-Roman numerals are formed by appending the conversions of decimal place values from highest to lowest. Converting a decimal place value into a Roman numeral has the following rules:
+Approach
 
-We use Java
-For this we use HashMaps. We manage 4 Strings[] for M, D, C, X
-Each C, X, I; consists of 10 symbols having value 100-900 & 10-90 & 1-9. (In Roamn value)
+Roman numerals are formed by converting each decimal place (thousands, hundreds, tens, and ones) separately and concatenating the results from left to right.
 
-As we traverse from left to right, we use a numerical formula: 
-M[num/1000] + C[(num%1000)/100] + X[(num%100)/10] +[(num%10)]
+Algorithm
+We use four String[] arrays to store the Roman numeral representations for:
+Thousands (M)
+Hundreds (C)
+Tens (X)
+Ones (I)
+Each array stores all possible values for its place:
+M : 0 - 3000
+C : 0 - 900
+X : 0 - 90
+I : 0 - 9
+
+The number is decomposed into its place values using integer division and modulo operations:
+
+M[num / 1000]
++ C[(num % 1000) / 100]
++ X[(num % 100) / 10]
++ I[num % 10]
+
+Each index directly maps to its Roman numeral representation, eliminating the need for loops, conditionals, or HashMaps. The final answer is obtained by concatenating the four strings.
+
+Complexity
+Time Complexity: O(1)
+Space Complexity: O(1)
