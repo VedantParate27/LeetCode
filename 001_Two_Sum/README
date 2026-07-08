@@ -1,0 +1,128 @@
+# Two Sum in C
+
+## Overview
+
+This project provides a C solution to the classic **Two Sum** problem. The function searches an integer array and returns the indices of two numbers whose sum equals a given target value.
+
+The solution uses a simple brute-force approach with nested loops to check every possible pair of elements.
+
+---
+
+## Problem Statement
+
+Given an array of integers `nums` and an integer `target`, return the indices of the two numbers such that:
+
+```
+nums[i] + nums[j] == target
+```
+
+You may assume that each input has exactly one valid solution, and you may not use the same element twice.
+
+---
+
+## Function Signature
+
+```c
+int* twoSum(int* nums, int numsSize, int target, int* returnSize);
+```
+
+### Parameters
+
+| Parameter    | Description                                          |
+| ------------ | ---------------------------------------------------- |
+| `nums`       | Pointer to the integer array                         |
+| `numsSize`   | Number of elements in the array                      |
+| `target`     | Desired sum                                          |
+| `returnSize` | Pointer used to store the size of the returned array |
+
+### Returns
+
+* A dynamically allocated array containing the two indices.
+* Returns `NULL` if no valid pair is found.
+
+---
+
+## Algorithm
+
+1. Iterate through the array using the first loop.
+2. For each element, iterate through the remaining elements.
+3. Check whether the sum of the current pair equals the target.
+4. If a matching pair is found:
+
+   * Allocate memory for two integers.
+   * Store the indices.
+   * Set `*returnSize` to `2`.
+   * Return the result.
+5. If no pair is found, return `NULL`.
+
+---
+
+## Time Complexity
+
+* **Time:** O(n²)
+* **Space:** O(1) (excluding the returned array)
+
+---
+
+## Example
+
+### Input
+
+```text
+nums = [2, 7, 11, 15]
+target = 9
+```
+
+### Output
+
+```text
+[0, 1]
+```
+
+### Explanation
+
+```
+nums[0] + nums[1] = 2 + 7 = 9
+```
+
+---
+
+## Code Features
+
+* Simple and easy-to-understand implementation.
+* Uses dynamic memory allocation (`malloc`) for the returned array.
+* Returns indices instead of values.
+* Suitable for beginners learning arrays, loops, pointers, and dynamic memory allocation in C.
+
+---
+
+## Note
+
+There is a small mistake in the current implementation:
+
+```c
+returnSize = 0;
+```
+
+should be
+
+```c
+*returnSize = 0;
+```
+
+because `returnSize` is a pointer. Dereferencing it correctly updates the value expected by the caller.
+
+---
+
+## Future Improvements
+
+* Implement an O(n) solution using a hash table.
+* Add input validation.
+* Include test cases for different inputs.
+* Improve memory safety and error handling.
+
+---
+
+## Author
+
+Brute-force implementation of the Two Sum problem in C for learning and practice purposes.
