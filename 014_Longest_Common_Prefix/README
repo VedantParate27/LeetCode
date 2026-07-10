@@ -1,0 +1,12 @@
+Longest Common Prefex: 
+For a given array, find the longest common prefex. 
+
+Method:
+Sort the array.
+If first string & last string have common prefex then the entire array has the same prefix
+
+Therefore, we compare the the first and last string in the while loop.
+
+i<first.length() & i<last.length & the loop runs till prefix is same.
+
+Thus we return the string from 0 to i.
