@@ -1,0 +1,224 @@
+# LeetCode 4 - Median of Two Sorted Arrays
+
+## Approach
+
+- Since the required time complexity is `O(log(m+n))`, merging both arrays is not possible.
+- Perform Binary Search on the **smaller array**.
+- Partition both arrays such that the left half contains `(n1+n2+1)/2` elements.
+- Check if the partition is valid using:
+  - `l1 <= r2`
+  - `l2 <= r1`
+- If valid:
+  - Odd total elements → `max(l1, l2)`
+  - Even total elements → `(max(l1,l2) + min(r1,r2)) / 2`
+- Otherwise, move the partition left or right using Binary Search.
+
+## Key Idea
+
+We are **not searching for the median**. We are searching for the **correct partition** where every element on the left is less than or equal to every element on the right.
+
+## Complexity
+
+- **Time:** `O(log(min(m,n)))`
+- **Space:** `O(1)`
+
+
+
+====================================================================================================================
+
+
+
+
+# LeetCode 4 - Median of Two Sorted Arrays
+
+## Problem
+Given two sorted arrays `nums1` and `nums2`, return the median of the combined sorted array.
+
+**Required Time Complexity:** `O(log(m+n))`
+
+---
+
+## First Thought
+
+The obvious approach is to merge both arrays and then find the median.
+
+Time Complexity:
+- Merge: `O(m+n)`
+- Find median: `O(1)`
+
+Overall: `O(m+n)`
+
+However, the problem explicitly asks for `O(log(m+n))`, so merging is not allowed.
+
+---
+
+## Key Observation
+
+The problem is **not about finding the median directly**.
+
+Instead, it is about finding the **correct partition** between the two arrays.
+
+The combined left half should contain exactly half of the total elements, while every element in the left half should be less than or equal to every element in the right half.
+
+---
+
+## Approach
+
+### 1. Binary Search on the Smaller Array
+
+Always perform binary search on the smaller array.
+
+Reason:
+- Smaller search space
+- Complexity becomes `O(log(min(m,n)))`
+
+If `nums1` is larger than `nums2`, simply swap them.
+
+---
+
+### 2. Partition the Arrays
+
+Choose a partition in the first array.
+
+```
+nums1
+
+1 3 | 8 9 15
+```
+
+If the total left half should contain `left` elements,
+
+```
+left = (n1 + n2 + 1) / 2
+```
+
+then the second partition is automatically fixed.
+
+```
+mid2 = left - mid1
+```
+
+---
+
+### 3. Check Only Four Elements
+
+Instead of comparing every element, only compare the boundary values.
+
+```
+l1 = element just left of partition in nums1
+r1 = element just right of partition in nums1
+
+l2 = element just left of partition in nums2
+r2 = element just right of partition in nums2
+```
+
+The partition is correct if
+
+```
+l1 <= r2
+
+AND
+
+l2 <= r1
+```
+
+If both conditions are satisfied, we have found the correct partition.
+
+---
+
+### 4. If the Partition is Incorrect
+
+Case 1
+
+```
+l1 > r2
+```
+
+The partition in `nums1` is too far right.
+
+Move left.
+
+```
+high = mid1 - 1
+```
+
+---
+
+Case 2
+
+```
+l2 > r1
+```
+
+The partition in `nums1` is too far left.
+
+Move right.
+
+```
+low = mid1 + 1
+```
+
+---
+
+### 5. Calculate the Median
+
+#### Odd Number of Elements
+
+The left half contains one extra element.
+
+```
+Median = max(l1, l2)
+```
+
+---
+
+#### Even Number of Elements
+
+Median lies between the largest value on the left and the smallest value on the right.
+
+```
+Median =
+(max(l1,l2) + min(r1,r2)) / 2
+```
+
+---
+
+## Special Cases
+
+If the partition lies at the beginning or end of an array, there is no element on one side.
+
+To simplify comparisons:
+
+```
+No left element  -> Integer.MIN_VALUE
+
+No right element -> Integer.MAX_VALUE
+```
+
+This avoids writing separate boundary conditions.
+
+---
+
+## Why This Works
+
+Instead of merging both arrays, binary search is used to locate the only partition where
+
+```
+max(left half) <= min(right half)
+```
+
+Once this partition is found, the median can be calculated directly from the four boundary elements.
+
+---
+
+## Complexity
+
+Time Complexity:
+
+O(log(min(m,n)))
+
+(Also satisfies O(log(m+n)))
+
+Space Complexity:
+
+O(1)
