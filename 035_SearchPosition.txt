@@ -1,0 +1,25 @@
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+    int lb=0, ub=nums.length-1;
+
+    if(nums.length == 0)  return 0;
+    return searchpos(nums, target, lb, ub);
+    }
+
+    static int searchpos(int nums[], int target, int lb, int ub){
+        if(lb > ub)
+            return lb;
+
+        int mid = lb + (ub - lb) / 2;
+        
+        if(nums[mid]==target)   return mid;
+        
+        else if(target < nums[mid]){
+            return searchpos (nums, target, lb, mid-1);
+        }
+        
+        else {
+            return searchpos (nums, target, mid+1, ub);
+        }
+    }
+}
