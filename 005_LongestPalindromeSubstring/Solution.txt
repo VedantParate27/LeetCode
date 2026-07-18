@@ -1,27 +1,16 @@
 class Solution {
-    public String longestPalindrome(String s) {
-        if(s==null || s.length() <2) return s;
-        int start=0, end=0;
+    public int findGCD(int[] nums) {
+        int min=nums[0]; int max=nums[0];
 
-        for(int i=0; i<s.length(); i++){
-            int len1 = logic(s, i, i);
-            int len2 = logic(s, i, i+1);
-
-            int len = Math.max(len1, len2);
-
-            if(len>end-start+1){
-                start = i-(len-1)/2;
-                end = i+(len)/2;
-            }
+        for(int i=0; i<nums.length; i++){
+            min = Math.min(nums[i], min);
+            max = Math.max(nums[i], max);
         }
-        return s.substring(start, end+1);
+        return GCD(min, max);
     }
 
-    static int logic(String s, int left, int right){
-        while(left>=0 && right<s.length() && s.charAt(left)==s.charAt(right)){
-            left--;
-            right++;
-        }
-        return right-left-1;
+    static int GCD(int a, int b){
+        if(b==0)    return a;
+        return GCD(b, a%b);
     }
 }
