@@ -1,0 +1,23 @@
+class Solution {
+    public int maxProduct(int n) {
+        int i=0, count=0;
+
+        int ncopy = n;
+
+        while(ncopy>0){
+            ncopy=ncopy/10;
+            count++;
+        }
+        int [] arr = new int[count];
+
+        while(n>0){
+                arr[i]=n%10;
+                i++;
+                n=n/10;
+        }
+
+        Arrays.sort(arr);
+
+        return arr[count-1]*arr[count-2];
+    }
+}
