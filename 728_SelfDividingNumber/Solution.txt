@@ -1,0 +1,21 @@
+class Solution {
+    public List<Integer> selfDividingNumbers(int left, int right) {
+        List<Integer> ans = new ArrayList<>();
+        
+        for(int i=left; i<=right; i++){
+            if(rec(i))     ans.add(i);
+        }
+
+            return ans;
+    }
+
+    static boolean rec(int n){
+        int ncopy=n;
+        while(n>0){
+            int digit = n%10;
+            n = n/10;
+            if(digit == 0 || ncopy%digit != 0)    return false;
+        }
+        return true;
+    }
+}
