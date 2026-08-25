@@ -1,0 +1,15 @@
+class Solution {
+    public boolean checkDivisibility(int n) {
+        int sum=0, prod=1;
+        int ncopy = n;
+        
+        while(ncopy>0){
+            sum = sum+ncopy%10;
+            prod = prod*(ncopy%10);
+            ncopy = ncopy/10;
+        }
+
+        if(n%(sum+prod) == 0)  return true;
+        else return false;
+    }
+}
