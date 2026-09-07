@@ -1,0 +1,38 @@
+LC 29 - Divide Two Integers
+
+No /, *, %
+
+Brute force:
+Repeated subtraction → O(quotient) → too slow
+
+Optimization:
+Double divisor each time:
+d, 2d, 4d, 8d...
+
+Example: 1233 / 101
+
+101 → 202 → 404 → 808 → 1616 ❌
+
+1233 - 808 = 425
+ans = 8
+
+101 → 202 → 404 → 808 ❌
+
+425 - 404 = 21
+ans = 8 + 4 = 12
+
+Key:
+Find largest doubled divisor that fits,
+subtract it, add its corresponding multiple.
+
+Bit shift:
+temp <<= 1
+multiple <<= 1
+
+Important:
+- Use long for overflow/MIN_VALUE
+- Sign = (a < 0) ^ (b < 0)
+- MIN_VALUE / -1 → MAX_VALUE
+
+TC: O(log |dividend|)
+SC: O(1)
