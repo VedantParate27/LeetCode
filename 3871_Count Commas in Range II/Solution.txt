@@ -1,0 +1,13 @@
+class Solution {
+    public long countCommas(long n) {
+        if(n<1000)     return 0;
+        
+        long thresh=999;
+        long sum=0;
+        while(thresh<n){
+            sum += n-thresh;
+            thresh = thresh*1000+999;
+        }
+        return sum;
+    }
+}
