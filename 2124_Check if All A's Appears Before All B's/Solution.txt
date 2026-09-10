@@ -1,0 +1,12 @@
+class Solution {
+    public boolean checkString(String s) {
+        boolean flagB = false;
+        
+        for(int i=0; i<s.length(); i++){
+            if(s.charAt(i) == 'b')  flagB = true;
+            if(s.charAt(i) == 'a' && flagB) return false;
+        }
+
+    return true;
+    }
+}
