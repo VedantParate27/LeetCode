@@ -1,0 +1,30 @@
+class Solution {
+    public String convert(String s, int numRows) {
+        if(s.length()==1 || s.length() <= numRows)   return s; 
+
+        StringBuilder[] row = new StringBuilder[numRows];
+        for(int i=0; i<numRows; i++){
+            row[i] = new StringBuilder();
+        }
+        int k=0;
+
+        while(k < s.length()){
+            for(int i=0; i<numRows && k<s.length(); i++){
+                row[i].append(s.charAt(k));
+                k++;
+            }
+
+            for(int j=numRows-2; j>=1 && k<s.length(); j--){
+                row[j].append(s.charAt(k));
+                k++;
+            }
+        }
+
+        StringBuilder sol = new StringBuilder();
+        for(int i=0; i<numRows; i++){
+            sol.append(row[i]);
+        }
+
+        return sol.toString();
+    }
+}
