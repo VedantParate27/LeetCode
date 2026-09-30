@@ -1,0 +1,25 @@
+class Solution {
+    public int[] maxDepthAfterSplit(String seq) {
+        int arr[] = new int[seq.length()];
+        int depth=0;
+        int k=0;
+        
+        if(seq.length() == 0){
+            return arr;
+        }
+        
+        for (int i=0; i<seq.length(); i++){
+            if(seq.charAt(i) == '('){
+                arr[k++] = depth%2;
+                depth++;
+            }
+            
+            else{
+                depth--; 
+                arr [k++] = depth%2;
+            }
+        }
+        
+        return arr;
+    }
+}
