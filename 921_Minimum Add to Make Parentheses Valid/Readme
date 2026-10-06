@@ -1,0 +1,18 @@
+LeetCode 921 - Minimum Add to Make Parentheses Valid
+Approach
+- Maintain a counter for unmatched opening parentheses.
+- For every (, increase the counter.
+- For every ):
+  - If an unmatched ( exists, match it and decrease the counter.
+  - Otherwise, this ) needs an additional (, so increase the answer.
+- After traversing the string, any remaining unmatched ( need additional ).
+Key Idea
+There are two types of invalid parentheses:
+- Extra ) → need to add (
+- Extra ( → need to add )
+The answer is therefore:
+extra ')' encountered + remaining unmatched '('
+
+Complexity
+- Time: O(n)
+- Space: O(1)
